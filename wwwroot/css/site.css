@@ -1,0 +1,65 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* Mevcut CSS'lerinizi koruyarak bunlarý ekleyin */
+.project-card {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+.project-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.bg-hero {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    padding: 4rem 0;
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.breadcrumb-custom {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+    .breadcrumb-custom .breadcrumb-item a {
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+    }
+
+    .breadcrumb-custom .breadcrumb-item.active {
+        color: white;
+    }
