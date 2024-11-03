@@ -1,8 +1,10 @@
 # 🔑 Topic Test Generator
 
-Konu testi olan test ve sonuç sayfası resmi eklenicekİ!!!!!!!!!!
+![quiz](https://github.com/Talha-Bicak/YolAI/blob/main/img/MiniTestQuestions.jpeg)
 
 **The Topic Test Generator is an API service that automatically creates and evaluates multiple-choice questions from PDF files. It uses Google's Gemini AI model for content analysis and generates high-quality questions.**
+
+![quiz](https://github.com/Talha-Bicak/YolAI/blob/main/img/MiniTestResult.jpeg)
 
 ## 🚀 Features
 
