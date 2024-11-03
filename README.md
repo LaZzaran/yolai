@@ -84,6 +84,44 @@ This module analyzes PDF documents to identify important content and enriches th
 - Relevant Controller classes were created, and workflows were organized.
 - Performance optimizations were achieved by focusing on ComponentPartial View usage and Await Async structures.
 
+# 📊 ASP.NET MVC Project with Multiple API Integrations
+
+This ASP.NET MVC project integrates with four different FastAPI-based APIs. Each API provides various endpoints for specific functions, aiming to enhance the user experience.
+
+## 1️⃣ Career Advice and Analysis API
+
+- **Purpose**: Provides career recommendations by analyzing user responses.
+- **Endpoint**:
+  - `/analyze-answers (POST)`: Accepts user responses in JSON format, analyzes them, and returns appropriate career suggestions.
+
+## 2️⃣ Test Analysis and Question Generation API
+
+- **Purpose**: Analyzes uploaded PDF documents to generate questions and evaluate responses to these questions.
+- **Endpoints**:
+  - `/upload-test-pdf (POST)`: Analyzes a PDF to generate questions.
+  - `/analyze-answers-per-question (POST)`: Analyzes each question's response and returns detailed results.
+
+## 3️⃣ Presentation Preparation and Video Creation API
+
+- **Purpose**: Converts a PDF document into a PPTX presentation, then into an MP4 video format.
+- **Endpoints**:
+  - `/convert-pdf-to-pptx (POST)`: Converts a PDF into PPTX format.
+  - `/convert-pptx-to-mp4 (GET)`: Converts the generated PPTX file into MP4 video format.
+
+## 4️⃣ Gemini Specialized Question-Answer API
+
+- **Purpose**: Provides answers to educational questions.
+- **Endpoint**:
+  - `/analyze-answers (POST)`: Responds to questions submitted through the application.
+
+## 💼 Project Use Cases
+
+- **Career Advice Page**: Provides career recommendations by analyzing the user's responses.
+- **Test and Analysis Page**: Displays the analysis results of responses given to questions generated from PDFs.
+- **Presentation Video Page**: Provides course content in video format for the user.
+- **Gemini Customized Chat**: Responds to educational questions asked by the user.
+
+
 This project was developed using the ASP.NET Core 8.0 framework and incorporates various technologies commonly used in modern web applications. The project operates on a PostgreSQL database using the Microsoft.EntityFrameworkCore.PostgreSQL 6.0.3 library.
 
 ## Technologies and Approaches Used
