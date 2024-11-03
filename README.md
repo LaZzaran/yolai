@@ -175,7 +175,7 @@ The project includes necessary APIs to facilitate application functionality and 
 2. **Download Project Files:**
    - Clone the project from GitHub or download it as a ZIP file.
    ```bash
-   git clone https://github.com/username/project_name.git
+   git clone https://github.com/Talha-Bicak/YolAI
 
 3. **Install Required NuGet Packages:**
 
