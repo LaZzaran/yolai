@@ -18,12 +18,12 @@
 Videos!
 
 <h1 align="center" style="border-bottom: none">
-    About Project
+   🚀 About Project
 </h1>
 
 **The Student and Teacher Support Platform** is an innovative solution designed to make educational processes more effective, accessible, and holistic in a digital environment. The project provides tools that enable teachers to easily prepare lesson content, while also allowing students to quickly access learning materials, analyze their skills and areas of success or difficulty, and receive mentor support whenever needed. By focusing on the needs of both students and teachers, the platform aims to make educational processes more efficient and interactive.
 
-# Modules
+# 🌟 Modules
 
 ## Career Test
 This module presents users with a carefully crafted set of 60 questions and performs a detailed analysis using the Gemini API. Based on the analysis results, users are provided with career recommendations and comprehensive explanations of why these careers suit them.
@@ -71,7 +71,7 @@ This module analyzes PDF documents to identify important content and enriches th
 - **ElevenLabs**: Provides high-quality voiceover for narration.
 - **Stable Diffusion**: Pre-trained open-source model used for AI-based image generation.
 
-# WEB
+# 🔑 WEB
 - The basic structure of the project has been established, and initial configurations are complete.
 - Layers were designed by analyzing the View, Controller, and Layout components.
 - Necessary Entity classes were defined and configured.
@@ -88,27 +88,27 @@ This module analyzes PDF documents to identify important content and enriches th
 
 This ASP.NET MVC project integrates with four different FastAPI-based APIs. Each API provides various endpoints for specific functions, aiming to enhance the user experience.
 
-## 1️⃣ Career Advice and Analysis API
+## Career Advice and Analysis API
 
 - **Purpose**: Provides career recommendations by analyzing user responses.
 - **Endpoint**:
   - `/analyze-answers (POST)`: Accepts user responses in JSON format, analyzes them, and returns appropriate career suggestions.
 
-## 2️⃣ Test Analysis and Question Generation API
+## Test Analysis and Question Generation API
 
 - **Purpose**: Analyzes uploaded PDF documents to generate questions and evaluate responses to these questions.
 - **Endpoints**:
   - `/upload-test-pdf (POST)`: Analyzes a PDF to generate questions.
   - `/analyze-answers-per-question (POST)`: Analyzes each question's response and returns detailed results.
 
-## 3️⃣ Presentation Preparation and Video Creation API
+## Presentation Preparation and Video Creation API
 
 - **Purpose**: Converts a PDF document into a PPTX presentation, then into an MP4 video format.
 - **Endpoints**:
   - `/convert-pdf-to-pptx (POST)`: Converts a PDF into PPTX format.
   - `/convert-pptx-to-mp4 (GET)`: Converts the generated PPTX file into MP4 video format.
 
-## 4️⃣ Gemini Specialized Question-Answer API
+## Gemini Specialized Question-Answer API
 
 - **Purpose**: Provides answers to educational questions.
 - **Endpoint**:
@@ -121,31 +121,30 @@ This ASP.NET MVC project integrates with four different FastAPI-based APIs. Each
 - **Presentation Video Page**: Provides course content in video format for the user.
 - **Gemini Customized Chat**: Responds to educational questions asked by the user.
 
+# 🛠️ Technologies and Approaches Used
 
 This project was developed using the ASP.NET Core 8.0 framework and incorporates various technologies commonly used in modern web applications. The project operates on a PostgreSQL database using the Microsoft.EntityFrameworkCore.PostgreSQL 6.0.3 library.
 
-## Technologies and Approaches Used
-
-### Controller and View Components
+## Controller and View Components
 The best practices of the MVC architecture have been followed to ensure a clear separation between the control and view layers of the application.
 
-### Code First Approach
+## Code First Approach
 The database modeling was implemented using the Code First approach, and the database structure was defined in the code.
 
-### LINQ and Entity Framework Queries
+## LINQ and Entity Framework Queries
 Powerful and readable queries were created using LINQ for database operations; Entity Framework was utilized in the data access layer to optimize data management processes.
 
-### N-Tier Architecture
+## N-Tier Architecture
 The project uses an N-Tier architecture, with a layered structure that allows each component of the application to be managed and developed independently:
 - **Entity Layer:** Represents the core entities of the application.
 - **Data Access Layer:** Interacts with the database.
 - **Business Layer:** Contains business rules and logic.
 - **Presentation Layer:** Manages the user interface.
 
-### Layout and View Management
+## Layout and View Management
 The view management of the application is structured according to modern design principles. A responsive design was adopted to enhance the user experience.
 
-### API Sections
+## API Sections
 The project includes necessary APIs to facilitate application functionality and data access. API configurations can be detailed further if needed.
 
 ## Important Features
@@ -164,7 +163,7 @@ The project includes necessary APIs to facilitate application functionality and 
 
 - **Pre-made Presentations**: An active button provides access to pre-made presentations stored in the PostgreSQL database, which can be filtered among different lesson materials.
 
-# Getting Started
+# 📝 Getting Started
 
 ## Installation Instructions
 
