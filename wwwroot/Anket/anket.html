@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariyer Anketi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fjalla One', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wrapper {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            color: #4A0072;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .question {
+            background: linear-gradient(135deg, #6a0dad, #4A0072);
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .question label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .question input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        .submit-button {
+            padding: 12px;
+            background-color: #6a0dad; /* Daha belirgin mor renk */
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin: 20px auto;
+        }
+        
+        .submit-button:hover {
+            background-color: #4A0072;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1 class="title"> Anket</h1>
+            <p>Lütfen aşağıdaki soruları yanıtlayınız.</p>
+        </div>
+
+        <!-- Anket Soruları -->
+        <form id="survey-form">
+            <!-- 60 Soru -->
+            <div class="question">
+                <label for="q1">Kaç yaşındasın? </label>
+                <input type="text" id="q1" name="q1" required>
+            </div>
+            <div class="question">
+                <label for="q2">Hangi şehirde yaşıyorsun? Şehrin senin için ne ifade ediyor?</label>
+                <input type="text" id="q2" name="q2" required>
+            </div>
+            <div class="question">
+                <label for="q2">Hangi türde bir okulda okuyorsun? (Anadolu Lisesi, Fen Lisesi, Meslek Lisesi vb.)</label>
+                <input type="text" id="q3" name="q3" required>
+            </div>
+            <div class="question">
+                <label for="q2">En sevdiğin dersler hangileri?</label>
+                <input type="text" id="q4" name="q4" required>
+            </div>
+            <div class="question">
+                <label for="q2">Hobileriniz ve ilgi alanlarınız nelerdir?</label>
+                <input type="text" id="q5" name="q5" required>
+            </div>
+            <div class="question">
+                <label for="q2">Güçlü yönleriniz nelerdir? (Örn: İletişim, problem çözme, yaratıcılık)</label>
+                <input type="text" id="q6" name="q6" required>
+            </div>
+            <div class="question">
+                <label for="q2">Kendinizi 5 yıl sonra nerede görüyorsunuz?</label>
+                <input type="text" id="q7" name="q7" required>
+            </div>
+            <div class="question">
+                <label for="q2">Çalışma ortamı tercihiniz nasıl? (Örn: Ofis, saha, uzaktan)</label>
+                <input type="text" id="q8" name="q8" required>
+            </div>
+            <div class="question">
+                <label for="q2">Teknolojiye olan ilginiz nasıl?</label>
+                <input type="text" id="q9" name="q9" required>
+            </div>
+            <div class="question">
+                <label for="q2">Gelir beklentiniz nedir?</label>
+                <input type="text" id="q10" name="q10" required>
+            </div>
+            <!-- 
+    "Kaç yaşındasın?",
+    "Hangi şehirde yaşıyorsun? Şehrin senin için ne ifade ediyor?",
+    "Hangi türde bir okulda okuyorsun? (Anadolu Lisesi, Fen Lisesi, Meslek Lisesi vb.)",
+    "En sevdiğin dersler hangileri?",
+    "Hobileriniz ve ilgi alanlarınız nelerdir?",
+    "Güçlü yönleriniz nelerdir? (Örn: İletişim, problem çözme, yaratıcılık)",
+    "Kendinizi 5 yıl sonra nerede görüyorsunuz?",
+    "Çalışma ortamı tercihiniz nasıl? (Örn: Ofis, saha, uzaktan)",
+    "Teknolojiye olan ilginiz nasıl?",
+    "Gelir beklentiniz nedir?" -->
+            
+
+            <button type="submit" class="submit-button">Gönder</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById('survey-form').addEventListener('submit', async function (e) {
+        e.preventDefault(); // Prevents the form from reloading the page
+        
+        // Collect form answers individually for single question submissions
+        const formData = new FormData(this);
+        
+        try {
+            for (let [key, value] of formData.entries()) {
+                if (!value.trim()) {
+                    alert('Tüm alanları doldurunuz!');
+                    return;
+                }
+                // Send each answer in the specified format
+                const response = await fetch('http://localhost:8000/submit-answer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ answer: value.trim() })
+                });
+
+                const result = await response.json();
+
+                // Check if the survey is complete and redirect if so
+                if (result.status === 'completed') {
+                    sessionStorage.setItem('analysis', result.analysis);
+                    window.location.href = 'sonuc.html';
+                    break;
+                } else if (result.status === 'success') {
+                    console.log('Bir sonraki soruya geçildi(Kontrol ediliyor): ${result.next_question}');
+                    /*aşağıdaki kod kullanıcıdan sürekli onay istiyordu soru sayısı kadar 
+                    ama yukardaki kod konsola yazıldığı için onay istemiyor .
+                    */
+                    
+                    //alert(`Bir sonraki soruya geçildi(Kontrol ediliyor): ${result.next_question}`);
+                } else {
+                    alert('Lütfen tüm soruları cevaplayınız!');
+                    break;
+                }
+            }
+        } catch (error) {
+            console.error('Error submitting survey:', error);
+        }
+    });
+</script>
+
+</html>

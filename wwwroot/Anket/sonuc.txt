@@ -1,0 +1,15 @@
+ <div class="wrapper">
+        <div class="header">
+            <h1 class="title">Matematik Anketi</h1>
+            <p>Sonuçlar:</p>
+        </div>
+
+        <!-- Anket Sonuçları -->
+        <div class="result">
+            <p>Anket sonuçlarınız başarıyla kaydedildi</div>
+        
+        <!-- Ana Sayfa Butonu -->
+        <buttonS class="home-button" onclick="window.location.href='index.html'">Ana Sayfa</button>
+    </div>
+
+    normalinin alt kısmı

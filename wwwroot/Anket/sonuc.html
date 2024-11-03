@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket Sonucu</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .result { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; }
+    </style>
+</head>
+<body>
+    <h1>Anket Sonucu</h1>
+    <div class="result" id="analysis-result">Yükleniyor...</div>
+
+    <script>
+        // sessionStorage'dan analiz sonucunu al ve göster
+        const analysis = sessionStorage.getItem('analysis');
+        document.getElementById('analysis-result').innerText = analysis ? analysis : 'Analiz yüklenemedi.';
+    </script>
+</body>
+</html>
