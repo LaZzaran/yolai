@@ -1,4 +1,6 @@
-![logo](https://github.com/Talha-Bicak/BTK24/blob/main/logo.png)
+<div align="center">
+    <img src="https://github.com/Talha-Bicak/BTK24/blob/main/logo.png" alt="logo" width="620">
+</div>
 
 <h1 align="center" style="border-bottom: none">
     Student and Teacher Support Platform
