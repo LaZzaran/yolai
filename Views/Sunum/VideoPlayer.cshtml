@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Oynatıcı</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #0073e6, #ffffff); /* Mavi-beyaz geçiş */
+        }
+
+        .video-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        video {
+            width: 80%;
+            max-width: 800px;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <video controls>
+            <source src="~/Videos/presentation.mp4" type="video/mp4">
+            Tarayıcınız bu videoyu oynatmayı desteklemiyor.
+        </video>
+    </div>
+
+</body>
+</html>

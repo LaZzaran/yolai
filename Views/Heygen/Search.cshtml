@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamik AI Eğitim Cevapları</title>
+    <style>
+        :root {
+            --primary-color: #0a2472;
+            --secondary-color: #1e3799;
+            --text-color: #ffffff;
+            --bg-color: #f1f2f6;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0.5rem 0.5rem 0 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        @@keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .response-container {
+            background-color: #ffffff;
+            border-radius: 0 0 0.5rem 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .response-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+        }
+
+        .question:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        .answer {
+            background-color: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 5px solid var(--primary-color);
+            transition: all var(--transition-speed) ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s ease 1s forwards;
+        }
+
+        @@keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .new-question-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .new-question-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .new-question-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .new-question-btn:hover::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @@keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        @@media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .response-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Sorunuz Cevapı</h1>
+            <p>Yapay zeka destekli eğitim asistanınız</p>
+        </header>
+
+        <main class="response-container">
+            <div class="question">
+                <p>Soru: Fotosentez  nasıl gerçekleşir?</p>
+            </div>
+            <div class="answer">
+                <p>Fotosentez, bitkilerin güneş ışığını kullanarak karbondioksit ve suyu glikoza dönüştürdüğü kimyasal bir süreçtir. Bu süreç şu adımları içerir:</p>
+                <ol>
+                    <li>Bitkiler güneş ışığını yakalar.</li>
+                    <li>Işık enerjisi, su moleküllerini hidrojen ve oksijene ayırır.</li>
+                    <li>Karbondioksit, yapraklardaki stomalardan alınır.</li>
+                    <li>Hidrojen ve karbondioksit, glikoz üretmek için kullanılır.</li>
+                    <li>Oksijen, bir yan ürün olarak serbest bırakılır.</li>
+                </ol>
+                <p>Bu süreç, bitkilerin büyümesi ve gelişmesi için gerekli olan enerjiyi sağlar ve aynı zamanda atmosferdeki oksijen seviyesinin korunmasına yardımcı olur.</p>
+            </div>
+        </main>
+
+        <button class="new-question-btn">Yeni Soru Sor</button>
+    </div>
+
+    <script>
+        document.querySelector('.new-question-btn').addEventListener('click', function() {
+            this.classList.add('clicked');
+            setTimeout(() => this.classList.remove('clicked'), 300);
+        });
+
+        document.querySelector('.question').addEventListener('click', function() {
+            const answer = document.querySelector('.answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

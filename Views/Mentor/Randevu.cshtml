@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğretmen Randevu Sistemi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #1a237e;
+            --light-blue: #3949ab;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background-color: var(--dark-blue);
+        }
+
+        .btn-primary {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+
+            .btn-primary:hover {
+                background-color: var(--light-blue);
+                border-color: var(--light-blue);
+            }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-header {
+            background-color: var(--dark-blue);
+            color: white;
+        }
+
+        .booking-step {
+            display: none;
+        }
+
+            .booking-step.active {
+                display: block;
+            }
+
+        .time-slot {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .time-slot:hover {
+                background-color: var(--light-blue);
+                color: white;
+            }
+
+            .time-slot.selected {
+                background-color: var(--dark-blue);
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Öğretmen Randevu Sistemi</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Filtreler</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="filterForm">
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Ders</label>
+                                <select class="form-select" id="subject">
+                                    <option value="">Dersi Seçiniz</option>
+                                    <option value="Matematik">Matematik</option>
+                                    <option value="Kimya">Kimya</option>
+                                    <option value="Fizik">Fizik</option>
+                                    <option value="Türkçe">Türkçe</option>
+                                    <option value="Coğrafya">Coğrafya</option>
+                                    <option value="Biyoloji">Biyoloji</option>
+                                    <option value="Tarih">Tarih</option>
+                                    <option value="Felsefe ve Din Kültürü">Felsefe ve Din Kültürü</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Tarih</label>
+                                <input type="date" class="form-control" id="date">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ara</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Mevcut Öğretmenler</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="teacher-list" id="teacherList">
+                            <!-- Öğretmen kartları buraya dinamik olarak eklenecek -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Randevu Modalı -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Randevu Al</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="step1" class="booking-step active">
+                        <h4>Adım 1: Tarih Seçin</h4>
+                        <input type="date" id="appointmentDate" class="form-control mb-3">
+                        <button class="btn btn-primary" onclick="nextStep(2)">İleri</button>
+                    </div>
+
+                    <div id="step2" class="booking-step">
+                        <h4>Adım 2: Saat Seçin</h4>
+                        <div id="timeSlots" class="d-flex flex-wrap justify-content-between mb-3">
+                            <!-- Saat dilimleri buraya dinamik olarak eklenecek -->
+                        </div>
+                        <button class="btn btn-secondary me-2" onclick="prevStep(1)">Geri</button>
+                        <button class="btn btn-primary" onclick="nextStep(3)">İleri</button>
+                    </div>
+
+                    <div id="step3" class="booking-step">
+                        <h4>Adım 3: Randevunuzu Onaylayın</h4>
+                        <p>Öğretmen: <span id="teacherName"></span></p>
+                        <p>Tarih: <span id="selectedDate"></span></p>
+                        <p>Saat: <span id="selectedTime"></span></p>
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Ek Notlar:</label>
+                            <textarea id="notes" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-secondary me-2" onclick="prevStep(2)">Geri</button>
+                        <button class="btn btn-primary" onclick="confirmBooking()">Randevuyu Onayla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Öğretmen verileri
+        const allTeachers = [
+            { id: 1, name: "Ayşe Demir", subject: "Matematik", rating: 4.8 },
+            { id: 2, name: "Mehmet Kaya", subject: "Kimya", rating: 4.9 },
+            { id: 3, name: "Zeynep Yıldız", subject: "Fizik", rating: 4.7 },
+            { id: 4, name: "Ali Özkan", subject: "Türkçe", rating: 4.6 },
+            { id: 5, name: "Esra Aydın", subject: "Coğrafya", rating: 4.8 },
+            { id: 6, name: "Ayla Şahin", subject: "Biyoloji", rating: 4.5 },
+            { id: 7, name: "Orhan Çelik", subject: "Tarih", rating: 4.7 },
+            { id: 8, name: "Betül Erdem", subject: "Felsefe ve Din Kültürü", rating: 4.6 }
+        ];
+
+        let filteredTeachers = [...allTeachers];
+
+        // Öğretmen kartı oluşturma fonksiyonu
+        function createTeacherCard(teacher) {
+            return `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">${teacher.name}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${teacher.subject}</h6>
+                                <p class="card-text">Puan: ${teacher.rating}/5</p>
+                                <button class="btn btn-primary" onclick="bookAppointment(${teacher.id})">Randevu Al</button>
+                            </div>
+                        </div>
+                    `;
+        }
+
+        // Öğretmen kartlarını görüntüleme fonksiyonu
+        function displayTeachers(teachers) {
+            const teacherList = document.getElementById('teacherList');
+            if (teachers.length === 0) {
+                teacherList.innerHTML = '<p class="text-center">Kriterlere uygun öğretmen bulunamadı.</p>';
+            } else {
+                teacherList.innerHTML = teachers.map(createTeacherCard).join('');
+            }
+        }
+
+        // Filtreleri uygulama fonksiyonu
+        function applyFilters(event) {
+            event.preventDefault();
+            const subject = document.getElementById('subject').value;
+            const date = document.getElementById('date').value;
+
+            filteredTeachers = allTeachers.filter(teacher => {
+                if (subject && teacher.subject !== subject) {
+                    return false;
+                }
+                // Normalde burada öğretmenin seçilen tarihte müsait olup olmadığını kontrol edersiniz
+                // Bu örnekte tüm öğretmenlerin her tarihte müsait olduğunu varsayıyoruz
+                return true;
+            });
+
+            displayTeachers(filteredTeachers);
+        }
+
+        // Filtre formuna olay dinleyicisi ekleme
+        document.getElementById('filterForm').addEventListener('submit', applyFilters);
+
+        // Randevu modalı işlevselliği
+        let currentStep = 1;
+        let selectedTimeSlot = null;
+        let selectedTeacherId = null;
+
+        function bookAppointment(teacherId) {
+            selectedTeacherId = teacherId;
+            const teacher = allTeachers.find(t => t.id === teacherId);
+            document.getElementById('teacherName').textContent = teacher.name;
+            resetBookingForm();
+            const bookingModal = new bootstrap.Modal(document.getElementById('bookingModal'));
+            bookingModal.show();
+        }
+
+        function resetBookingForm() {
+            currentStep = 1;
+            selectedTimeSlot = null;
+            document.getElementById('appointmentDate').value = '';
+            document.getElementById('notes').value = '';
+            document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+        }
+
+        function nextStep(step) {
+            if (step === 2 && !document.getElementById('appointmentDate').value) {
+                alert('Lütfen bir tarih seçin');
+                return;
+            }
+            if (step === 3 && !selectedTimeSlot) {
+                alert('Lütfen bir saat dilimi seçin');
+                return;
+            }
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            if (step === 2) {
+                generateTimeSlots();
+            }
+            if (step === 3) {
+                updateConfirmationDetails();
+            }
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        function generateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            timeSlotsContainer.innerHTML = '';
+            const timeSlots = ['09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
+            timeSlots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot p-2 mb-2 border rounded';
+                slot.textContent = time;
+                slot.onclick = () => selectTimeSlot(slot, time);
+                timeSlotsContainer.appendChild(slot);
+            });
+        }
+
+        function selectTimeSlot(slot, time) {
+            if (selectedTimeSlot) {
+                selectedTimeSlot.classList.remove('selected');
+            }
+            slot.classList.add('selected');
+            selectedTimeSlot = slot;
+            document.getElementById('selectedTime').textContent = time;
+        }
+
+        function updateConfirmationDetails() {
+            document.getElementById('selectedDate').textContent = document.getElementById('appointmentDate').value;
+        }
+
+        function confirmBooking() {
+            const notes = document.getElementById('notes').value;
+            const teacher = allTeachers.find(t => t.id === selectedTeacherId);
+            alert('Randevu onaylandı!\n\n' +
+                'Öğretmen: ' + teacher.name + '\n' +
+                'Ders: ' + teacher.subject + '\n' +
+                'Tarih: ' + document.getElementById('selectedDate').textContent + '\n' +
+                'Saat: ' + document.getElementById('selectedTime').textContent + '\n' +
+                'Notlar: ' + notes);
+            // Normalde burada bu verileri sunucunuza gönderirsiniz
+            const bookingModal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+            bookingModal.hide();
+        }
+
+        // Sayfa yüklendiğinde tüm öğretmenleri görüntüle
+        window.onload = () => displayTeachers(allTeachers);
+    </script>
+</body>
+</html>

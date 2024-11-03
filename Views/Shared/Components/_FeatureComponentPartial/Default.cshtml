@@ -1,0 +1,20 @@
+﻿@model List<BTK.DAL.Entities.Feature>
+
+<div class="container-xxl py-5 bg-primary hero-header mb-5">
+    <div class="container my-5 py-5 px-lg-5">
+        <div class="row g-5 py-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="text-white mb-4 animated zoomIn">@item.Title</h1>
+                <p class="text-white pb-3 animated zoomIn">@item.Description</p>
+              
+            </div>
+            }
+            <div class="col-lg-6 text-center text-lg-start">
+                    <img class="img-fluid" src="~/mainPage.png" alt="">
+            </div>
+            
+        </div>
+    </div>
+</div>

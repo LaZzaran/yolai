@@ -1,0 +1,36 @@
+﻿
+@model List<BTK.DAL.Entities.Anket>
+
+<div class="wrapper">
+    <div class="header">
+        <h1 class="title">Meslek Seçim Sayfası</h1>
+        <p>Lütfen aşağıdaki soruları yanıtlayınız.</p>
+    </div>
+
+    <!-- Anket Soruları -->
+    <form id="survey-form">
+        <!-- 60 Soru -->
+        @foreach (var item in Model)
+        {
+            <div class="question">
+                <label for="q1">@item.Soru </label>
+                <input type="text" id="q1" name="q1" required>
+            </div>
+        }
+        
+        <!--
+        "Kaç yaşındasın?",
+        "Hangi şehirde yaşıyorsun? Şehrin senin için ne ifade ediyor?",
+        "Hangi türde bir okulda okuyorsun? (Anadolu Lisesi, Fen Lisesi, Meslek Lisesi vb.)",
+        "En sevdiğin dersler hangileri?",
+        "Hobileriniz ve ilgi alanlarınız nelerdir?",
+        "Güçlü yönleriniz nelerdir? (Örn: İletişim, problem çözme, yaratıcılık)",
+        "Kendinizi 5 yıl sonra nerede görüyorsunuz?",
+        "Çalışma ortamı tercihiniz nasıl? (Örn: Ofis, saha, uzaktan)",
+        "Teknolojiye olan ilginiz nasıl?",
+        "Gelir beklentiniz nedir?" -->
+
+
+        <button type="button" class="submit-button" onclick="window.location.href='/Default/Job'">Sonuç Gör</button>
+    </form>
+</div>

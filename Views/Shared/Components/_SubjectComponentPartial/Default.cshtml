@@ -1,0 +1,87 @@
+﻿@model List<BTK.DAL.Entities.Subject>
+
+@await Component.InvokeAsync("_HeadComponentPartial")
+
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center mb-5 pb-2">
+            <h6 class="position-relative d-inline text-primary ps-4">Çevrimiçi Öğrenme ve Erişilebilirlik</h6>
+            <h2 class="mt-2">Konular</h2>
+        </div>
+
+        <!-- Filtre Butonları -->
+        <ul id="portfolio-flters" class="d-flex justify-content-center list-unstyled mb-4">
+            <li class="btn btn-primary mx-1 active" data-filter="*">Hepsi</li>
+            <li class="btn btn-primary mx-1" data-filter=".fen">Fen</li>
+            <li class="btn btn-primary mx-1" data-filter=".mat">Matematik</li>
+            <li class="btn btn-primary mx-1" data-filter=".sos">Sosyal</li>
+            <li class="btn btn-primary mx-1" data-filter=".turkce">Türkçe</li>
+        </ul>
+
+        <!-- Konular -->
+        <div class="row g-4 portfolio-container">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 portfolio-item @item.FilterClass">
+                    <div class="position-relative rounded overflow-hidden" style="height: 300px; width: 100%;">
+                        <img class="img-fluid w-100" src="@item.Image" alt="" style="height: 100%; object-fit: cover;">
+                        <div class="portfolio-overlay">
+                            <div class="button-container">
+                                <a class="btn btn-light" href="/Exam/Index" data-lightbox="portfolio">
+                                    <i class="fa fa-arrow-right fa-2x text-primary"></i> Teste Git
+                                </a>
+                                <a class="btn btn-light" href="/Sunum/VideoPlayer" data-lightbox="portfolio" id="konu-anlatimi">
+                                    <i class="fa fa-arrow-right fa-2x text-primary"></i> Konu Anlatımı
+                                </a>
+                            </div>
+                            <div class="mt-auto">
+                                <small class="text-white"><i class="fa fa-folder me-2"></i>@item.SubjectName</small>
+                                <a class="h5 d-block text-white mt-1 mb-0" href="">@item.LessonName</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Filtreleme için JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // URL'den filtre parametresini al
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get('filter');
+
+        // Isotope'u başlat
+        var $portfolioContainer = $('.portfolio-container').isotope({
+            itemSelector: '.portfolio-item',
+            layoutMode: 'fitRows'
+        });
+
+        // Eğer URL'de filtre parametresi varsa, bu filtreyi uygula
+        if (filterParam) {
+            const filterClass = '.' + filterParam;
+            $portfolioContainer.isotope({ filter: filterClass });
+
+            // Aktif butonu güncelle
+            $('#portfolio-flters li').removeClass('active');
+            $(`#portfolio-flters li[data-filter="${filterClass}"]`).addClass('active');
+        }
+
+        // Filtre butonlarına tıklama olayı
+        $('#portfolio-flters li').on('click', function () {
+            var filterValue = $(this).attr('data-filter');
+
+            // Butonun aktif durumunu güncelle
+            $('#portfolio-flters li').removeClass('active');
+            $(this).addClass('active');
+
+            // Isotope ile filtreleme işlemi
+            $portfolioContainer.isotope({ filter: filterValue });
+        });
+    });
+</script>

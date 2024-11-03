@@ -1,0 +1,28 @@
+﻿
+<!DOCTYPE html>
+
+@await Component.InvokeAsync("_SubjectComponentPartial")
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // URL'deki hash değerini al
+        var hash = window.location.hash.substr(1); // #'den sonraki kısmı al
+
+        // Eğer hash değeri varsa filtreleme fonksiyonunu çağır
+        if (hash) {
+            filterTopics(hash);
+
+            // İlgili butonu aktif hale getir
+            var buttons = document.querySelectorAll('.btn-primary');
+            buttons.forEach(function (button) {
+                // Tüm butonlardan active sınıfını kaldır
+                button.classList.remove('active');
+
+                // Eğer butonun onclick özelliği hash değerini içeriyorsa
+                if (button.getAttribute('onclick').includes(hash)) {
+                    // O butona active sınıfını ekle
+                    button.classList.add('active');
+                }
+            });
+        }
+    });
+</script>

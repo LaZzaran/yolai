@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariyer Analizi Sonuçları</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2124b1;
+            --secondary-color: #17a2b8;
+            --accent-color: #ffc107;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+            .btn-primary:hover {
+                background-color: #1a1c8f;
+                border-color: #1a1c8f;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 3px;
+                background-color: var(--accent-color);
+            }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+            .animate-on-scroll.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .career-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-bottom: none;
+        }
+
+            .card-header h2 {
+                font-weight: 600;
+                margin: 0;
+                font-size: 1.5rem;
+                color: black;
+            }
+
+        .card-body {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .assessment-card {
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .assessment-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Kariyer Analizi Sonuçları</a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-5 text-gradient">Kariyer Analizi Sonuçları</h1>
+
+        <div class="card mb-5 animate-on-scroll">
+            <div class="card-header bg-gradient">
+                <h2 class="card-title m-0">Genel Değerlendirme</h2>
+            </div>
+            <div class="card-body">
+                <p id="generalAssessment" class="mb-0"></p>
+            </div>
+        </div>
+
+        <h2 class="text-center mb-5 section-title">Önerilen Meslekler</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5" id="careerCards">
+            <!-- Career cards will be dynamically inserted here -->
+        </div>
+
+        <div class="card animate-on-scroll">
+            <div class="card-header bg-gradient">
+                <h2 class="card-title m-0">Ek Öneriler</h2>
+            </div>
+            <div class="card-body">
+                <p id="additionalSuggestions" class="mb-0"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p>&copy; 2023 Kariyer Analizi. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const generalAssessment = `Kişi, kariyer analizi sorularının çoğuna anlamlı cevaplar vermemiş veya alakasız yanıtlar yazmıştır. Bu durum, kişinin ya süreci ciddiye almadığını ya da kendini ifade etmekte zorlandığını gösteriyor olabilir. "Evet" ve "Hayır" şeklinde verilen cevaplar da kişinin ilgi alanlarını ve yeteneklerini anlamamızı zorlaştırıyor. Yalnızca yaratıcı fikirler üretmek ve insanlarla iletişim kurmaktan hoşlandığını ve genel resme odaklanmayı tercih ettiğini belirten "yes" cevapları ile detaylara dikkat etmediğini, analitik düşünmeyi tercih etmediğini ve baskı altında çalışmayı sevmediğini belirten "no" cevapları bir nebze ipucu veriyor. 17 yaşında olduğunu tahmin ediyoruz (aile desteği sorusuna verdiği cevaba dayanarak). Bu yaştaki bir genç için kariyer planlaması yapmak zor olsa da, eldeki kısıtlı bilgilere dayanarak bazı genel önerilerde bulunabiliriz.`;
+
+        const recommendedCareers = [
+            {
+                title: "Grafik Tasarımcı",
+                suitability: "Yaratıcı fikirler üretmekten hoşlandığını belirtmiş. Görsel iletişim alanında çalışmak, yaratıcılığını kullanmasına olanak tanır.",
+                education: "Güzel Sanatlar Fakülteleri, Grafik Tasarım bölümü veya ilgili meslek yüksekokulları. Çeşitli tasarım programları ve sertifikasyon programları mevcut.",
+                careerPath: "Freelance tasarımcı, ajanslarda grafiker, art direktör.",
+                image: "https://www.tuncaybas.com/wp-content/uploads/2020/02/yazilimci.jpg"
+            },
+            {
+                title: "Sosyal Medya Uzmanı",
+                suitability: "İletişim becerilerinin iyi olduğunu varsayıyoruz (\"yes\" cevabına dayanarak). Sosyal medya, iletişim ve yaratıcılığın birleştiği bir alan.",
+                education: "İletişim, pazarlama veya ilgili alanlarda üniversite eğitimi. Sosyal medya yönetimi sertifikaları.",
+                careerPath: "Sosyal medya yöneticisi, dijital pazarlama uzmanı.",
+                image: "https://framerusercontent.com/images/4AzXZAorMb3uhKaPC8fdPr2Cmk.jpg"
+            },
+            {
+                title: "Yazar/Senarist",
+                suitability: "Yaratıcı fikirler üretmekten hoşlanıyor. Hikaye anlatıcılığı ve yaratıcı yazarlık, bu yeteneğini kullanabileceği alanlar.",
+                education: "Edebiyat, gazetecilik veya ilgili alanlarda üniversite eğitimi. Yaratıcı yazarlık atölyeleri.",
+                careerPath: "Freelance yazar, senarist, gazeteci, editör.",
+                image: "https://www.italiandesigninstitute.com/wp-content/uploads/2024/02/corso-ux-design1-scaled.jpg"
+            },
+            {
+                title: "Oyun Tasarımcısı",
+                suitability: "Yaratıcılık ve hikaye anlatıcılığı gerektiren bir alan.",
+                education: "Yazılım mühendisliği, bilgisayar programcılığı veya ilgili alanlarda üniversite eğitimi. Oyun tasarımı sertifikaları.",
+                careerPath: "Oyun tasarımcısı, oyun geliştiricisi.",
+                image: "https://www.techinside.com/wp-content/uploads/2023/09/siber-guvenlik-uzmani-nasil-olunur-techinside.webp"
+            },
+            {
+                title: "Satış Temsilcisi/Pazarlamacı",
+                suitability: "İletişim becerileri gerektiren bir alan.",
+                education: "İşletme, pazarlama veya ilgili alanlarda üniversite eğitimi. Satış ve pazarlama sertifikaları.",
+                careerPath: "Satış temsilcisi, pazarlama uzmanı, satış müdürü.",
+                image: "https://phoenix.ieu.edu.tr/betanix/images/uploads/haber/9014_1.jpeg"
+            }
+        ];
+
+        const additionalSuggestions = `
+                    Kişiye, ilgi alanlarını ve yeteneklerini daha net bir şekilde belirlemesi için bir kariyer danışmanından destek alması şiddetle tavsiye edilir. Çeşitli meslekleri araştırması, staj yapması ve farklı alanlarda deneyim kazanması da kariyer yolunu belirlemesinde yardımcı olacaktır. Ayrıca, kendini tanıma testleri ve kişilik envanterleri de faydalı olabilir. Kişinin verdiği cevapların yetersizliği nedeniyle, bu öneriler oldukça genel niteliktedir. Daha detaylı ve kişiye özel öneriler için, daha fazla bilgiye ihtiyaç vardır.
+                `;
+
+        document.getElementById('generalAssessment').textContent = generalAssessment;
+        document.getElementById('additionalSuggestions').textContent = additionalSuggestions;
+
+        const careerCardsContainer = document.getElementById('careerCards');
+
+        recommendedCareers.forEach((career, index) => {
+            const careerCard = `
+                        <div class="col animate-on-scroll">
+                            <div class="card h-100 shadow">
+                                <img src="${career.image}" class="card-img-top career-image" alt="${career.title} görseli">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold mb-4">${career.title}</h5>
+                                    <div class="accordion" id="accordion${index}">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}Suitability">
+                                                    Neden Uygun?
+                                                </button>
+                                            </h2>
+                                            <div id="collapse${index}Suitability" class="accordion-collapse collapse" data-bs-parent="#accordion${index}">
+                                                <div class="accordion-body">
+                                                    ${career.suitability}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}Education">
+                                                    Gerekli Eğitim/Sertifikalar
+                                                </button>
+                                            </h2>
+                                            <div id="collapse${index}Education" class="accordion-collapse collapse" data-bs-parent="#accordion${index}">
+                                                <div class="accordion-body">
+                                                    ${career.education}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}CareerPath">
+                                                    Kariyer Yolu
+                                                </button>
+                                            </h2>
+                                            <div id="collapse${index}CareerPath" class="accordion-collapse collapse" data-bs-parent="#accordion${index}">
+                                                <div class="accordion-body">
+                                                    ${career.careerPath}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white border-top-0">
+                                    <button class="btn btn-primary w-100 fw-medium">Daha Fazla Bilgi</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            careerCardsContainer.innerHTML += careerCard;
+        });
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            var elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(function (element) {
+
+                if (isElementInViewport(element)) {
+                    element.classList.add('show');
+                }
+            });
+        }
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Listen for scroll events
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

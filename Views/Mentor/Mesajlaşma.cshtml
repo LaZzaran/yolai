@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="tr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamik Mesajlaşma Arayüzü</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: {
+                            50: '#E6F0FF',
+                            100: '#CCE0FF',
+                            200: '#99C2FF',
+                            300: '#66A3FF',
+                            400: '#3385FF',
+                            500: '#0066FF',
+                            600: '#0052CC',
+                            700: '#003D99',
+                            800: '#002966',
+                            900: '#001433',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full bg-darkblue-900 text-darkblue-100">
+    <div class="flex h-full">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-darkblue-800 p-4 transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Eğitmenler</h2>
+                <button id="darkModeToggle" class="p-2 rounded-full hover:bg-darkblue-700 transition-colors duration-200">
+                    <i class="fas fa-moon w-5 h-5"></i>
+                </button>
+            </div>
+            <ul>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    AŞ
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-green-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Ayla Şahin</div>
+                                <div class="text-sm text-darkblue-300">Biyoloji</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    AD
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-yellow-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Ayşe Demir</div>
+                                <div class="text-sm text-darkblue-300">Matematik</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    OÇ
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-gray-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Orhan Çelik</div>
+                                <div class="text-sm text-darkblue-300">Tarih</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    EA
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-gray-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Esra Aydın</div>
+                                <div class="text-sm text-darkblue-300">Coğrafya</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    AÖ
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-yellow-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Ali Özkan</div>
+                                <div class="text-sm text-darkblue-300">Türkçe</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    MK
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-green-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Mehmet Kaya</div>
+                                <div class="text-sm text-darkblue-300">Kimya</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-darkblue-700 transition-colors duration-200">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold">
+                                    ZP
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-darkblue-800 bg-gray-500"></div>
+                            </div>
+                            <div class="ml-3">
+                                <div class="font-semibold">Zeynep Yıldız</div>
+                                <div class="text-sm text-darkblue-300">Fizik</div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div>
+
+
+        </div> 
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Chat Header -->
+            <div class="bg-darkblue-800 p-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <button id="sidebarToggle" class="mr-4 p-2 rounded-full hover:bg-darkblue-700 transition-colors duration-200 lg:hidden">
+                        <i class="fas fa-bars w-5 h-5"></i>
+                    </button>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-darkblue-600 flex items-center justify-center text-darkblue-100 font-bold mr-3">
+                            JD
+                        </div>
+                        <div>
+                            <div class="font-semibold">Ayla Şahin</div>
+                            <div class="text-sm text-darkblue-300">Çevrimiçi</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="p-2 rounded-full hover:bg-darkblue-700 transition-colors duration-200">
+                    <i class="fas fa-ellipsis-v w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div id="messageContainer" class="flex-1 p-4 overflow-y-auto bg-white">
+                <div class="mb-4">
+                    <div class="inline-block max-w-xs md:max-w-md bg-gray-100 rounded-lg px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <p class="text-gray-800">Merhaba! Biyolojide Kalıtım hakkında bir sorum var.</p>
+                        <p class="text-xs mt-1 text-gray-500">10:00</p>
+                    </div>
+                </div>
+                <div class="mb-4 text-right">
+                    <div class="inline-block max-w-xs md:max-w-md bg-darkblue-500 text-white rounded-lg px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <p>Tabii, yardımcı olmaktan memnuniyet duyarım! Ne öğrenmek istersiniz?</p>
+                        <p class="text-xs mt-1 opacity-75">10:02</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="inline-block max-w-xs md:max-w-md bg-gray-100 rounded-lg px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <p class="text-gray-800">
+                            Bir özellik için yapılan monohibrit çaprazlamada genotiplerin dağılımı farklı olabilirken, dihibrit çaprazlamada dağılım daha karmaşıktır. Bu bilgiye göre:
+
+                            Monohibrit çaprazlama nedir, hangi durumda kullanılır?
+                            Dihibrit çaprazlama nedir, hangi durumda tercih edilir?
+                            İki tür çaprazlamanın sonucunda oluşan genotiplerin dağılımında neden farklılık gözlenir? Kısaca açıklayın.
+                        </p>
+                        <p class="text-xs mt-1 text-gray-500">10:05</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="bg-white p-4 border-t border-gray-200">
+                <form id="messageForm" class="flex items-center bg-gray-100 rounded-full p-2">
+                    <button type="button" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                        <i class="fas fa-paperclip w-5 h-5 text-gray-600"></i>
+                    </button>
+                    <input type="text"
+                           id="messageInput"
+                           placeholder="Mesajınızı yazın..."
+                           class="flex-1 bg-transparent px-4 focus:outline-none text-gray-800 placeholder-gray-500">
+                    <button type="submit" class="p-2 bg-darkblue-500 hover:bg-darkblue-600 rounded-full text-white transition-colors duration-200">
+                        <i class="fas fa-paper-plane w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+        const messageContainer = document.getElementById('messageContainer');
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('bg-darkblue-900');
+            document.body.classList.toggle('bg-gray-100');
+            document.body.classList.toggle('text-darkblue-100');
+            document.body.classList.toggle('text-gray-800');
+            darkModeToggle.innerHTML = document.body.classList.contains('bg-darkblue-900')
+                ? '<i class="fas fa-sun w-5 h-5"></i>'
+                : '<i class="fas fa-moon w-5 h-5"></i>';
+        });
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                messageInput.value = '';
+                // Simüle edilmiş yanıt
+                setTimeout(() => {
+                    addMessage('Teşekkürler mesajınız için. Size nasıl yardımcı olabilirim?', false);
+                }, 1000);
+            }
+        });
+
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `mb-4 ${isUser ? 'text-right' : ''}`;
+
+            const innerDiv = document.createElement('div');
+            innerDiv.className = `inline-block max-w-xs md:max-w-md ${isUser ? 'bg-darkblue-500 text-white' : 'bg-gray-100 text-gray-800'} rounded-lg px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105`;
+
+            const textP = document.createElement('p');
+            textP.textContent = text;
+
+            const timeP = document.createElement('p');
+            timeP.className = `text-xs mt-1 ${isUser ? 'opacity-75' : 'text-gray-500'}`;
+            timeP.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            innerDiv.appendChild(textP);
+            innerDiv.appendChild(timeP);
+            messageDiv.appendChild(innerDiv);
+            messageContainer.appendChild(messageDiv);
+
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>

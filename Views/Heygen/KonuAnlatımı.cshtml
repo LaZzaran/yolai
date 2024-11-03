@@ -1,0 +1,455 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunum ve Konu Anlatımı Hazır | AI Sunum Oluşturucu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2124b1;
+            --secondary-color: #17a2b8;
+            --accent-color: #ffc107;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1a1c8f;
+            border-color: #1a1c8f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,.15);
+        }
+        .progress-bar {
+            background-color: #2124b1;
+            transition: width 0.5s ease;
+        }
+        .slide-preview {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .slide-preview:hover {
+            transform: scale(1.05);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        .feature-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        .list-group-item {
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #f1f3f5;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        .bg-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        .animate-on-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #uploadForm {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        #uploadForm:hover {
+            border-color: var(--primary-color);
+        }
+        #uploadForm.drag-over {
+            background-color: #e9ecef;
+        }
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">AI Sunum Oluşturucu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nasil-calisir">Nasıl Çalışır?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ozellikler">Özellikler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5 pt-5">
+        <h1 class="main-title text-gradient animate-on-scroll">AI Destekli Sunum ve Konu Anlatımı Oluşturucu</h1>
+
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <div class="card animate-on-scroll">
+                    <div class="card-body">
+                        <h5 class="card-title text-gradient">PDF Yükleme</h5>
+                        <form id="uploadForm">
+                            <p class="card-text mb-3">PDF dosyanızı buraya sürükleyip bırakın veya seçin</p>
+                            <input type="file" id="pdfFile" accept=".pdf" class="form-control mb-3" required>
+                            <button type="submit" class="btn btn-primary">Yükle ve İşlemi Başlat</button>
+                        </form>
+                        <div id="progressContainer" style="display: none;">
+                            <h5 class="mt-4">İşlem Durumu</h5>
+                            <p class="card-text" id="pdfName"></p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                            <p class="text-success" style="display: none;"><i class="bi bi-check-circle-fill"></i> İşlem tamamlandı</p>
+                            <a href="@Url.Action("VideoPlayer", "Sunum")" class="btn btn-primary" style="display: none;" id="openVideoPlayer"><i class="bi bi-play-circle"></i> Video Oynatıcıyı Aç</a>
+                        </div>
+                        
+                        <script>
+                            // İşlem tamamlandığında çağrılacak fonksiyon
+                            function onProcessComplete() {
+                                document.querySelector('.text-success').style.display = 'block'; // Tamamlandı mesajını göster
+                                document.getElementById('openVideoPlayer').style.display = 'block'; // Butonu göster
+
+                                // 3 saniye sonra VideoPlayer.cshtml sayfasına yönlendir
+                                setTimeout(function () {
+                                    window.location.href = '@Url.Action("VideoPlayer", "Sunum")'; // Yönlendirme
+                                }, 3000); // 3000 milisaniye = 3 saniye
+                            }
+
+                            // Formun gönderilmesi ve PDF yükleme işleminin başlaması
+                            document.getElementById('uploadForm').addEventListener('submit', function (event) {
+                                event.preventDefault(); // Formun varsayılan gönderimini engelle
+
+                                // Burada PDF yükleme ve işleme kodlarınızı ekleyin
+
+                                // Örneğin, yükleme tamamlandığında onProcessComplete fonksiyonunu çağırabilirsiniz
+                                // onProcessComplete(); // İşlem tamamlandığında bu satırı ekleyin
+                            });
+                        </script>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://www.loopmultimedia.com/wp-content/uploads/2018/10/etkili_sunum_teknikleri.png" alt="AI Sunum Oluşturucu" class="img-fluid rounded shadow animate-on-scroll">
+            </div>
+        </div>
+
+        <div id="resultContainer" style="display: none;">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 animate-on-scroll">
+                        <div class="card-body">
+                            <h5 class="card-title text-gradient">Oluşturulan Sunum</h5>
+                            <div class="slide-preview mb-3">
+                                <img src="https://btm.istanbul/storage/uploads/news/937/conversions/sunum-large.jpg" alt="Sunum Önizleme" class="img-fluid">
+                            </div>
+                            <p class="card-text">Sunumunuz başarıyla oluşturuldu. Toplam <span class="badge bg-primary">15</span> slayt içeriyor.</p>
+                            <button class="btn btn-primary" id="downloadPresentation"><i class="bi bi-download"></i> Sunumu İndir</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 animate-on-scroll">
+                        <div class="card-body">
+                            <h5 class="card-title text-gradient">Yapay Zeka Konu Anlatımı</h5>
+                            <p class="card-text">PDF'inizden oluşturulan içerik kullanılarak yapay zeka ile konu anlatımı hazırlandı.</p>
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Detaylı açıklamalar</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Örnekler ve alıştırmalar</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Görsel destekli anlatım</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Interaktif öğrenme modülleri</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Kişiselleştirilmiş öğrenme yolu</li>
+                                <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Anlık geri bildirim ve değerlendirme</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary" id="viewLecture"><i class="bi bi-play-circle"></i> Konu Anlatımını Görüntüle</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    // "Konu Anlatımını Görüntüle" butonuna tıklama olayı
+                    document.getElementById('viewLecture').addEventListener('click', function (event) {
+                        event.preventDefault(); // Varsayılan davranışı engelle
+                        window.location.href = '@Url.Action("VideoPlayer", "Sunum")'; // Yönlendirme
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light py-5" id="nasil-calisir">
+        <div class="container">
+            <h2 class="text-center mb-5 section-title">Nasıl Çalışır?</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-upload"></i>
+                    </div>
+                    <h4>1. PDF Yükleyin</h4>
+                    <p>Ders içeriğinizi içeren PDF dosyanızı sisteme yükleyin.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <h4>2. AI İşleme</h4>
+                    <p>Yapay zeka modelimiz içeriğinizi analiz eder ve sunum oluşturur.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-download"></i>
+                    </div>
+                    <h4>3. Sunumu İndirin</h4>
+                    <p>Hazırlanan profesyonel sunumunuzu indirin ve kullanmaya başlayın.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5" id="ozellikler">
+        <h2 class="text-center mb-5 section-title">Özellikler</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4 animate-on-scroll">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-lightning-charge text-primary me-2"></i>Hızlı İşlem</h5>
+                        <p class="card-text">Yapay zeka modelimiz, PDF'lerinizi saniyeler içinde işler ve sunumunuzu hazırlar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 animate-on-scroll">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-palette text-primary me-2"></i>Özelleştirilebilir Temalar</h5>
+                        <p class="card-text">Oluşturulan sunumları kendi zevkinize göre özelleştirebilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 animate-on-scroll">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-translate text-primary me-2"></i>Çoklu Dil Desteği</h5>
+                        <p class="card-text">Farklı dillerdeki ders içeriklerini işleyebilir ve sunuma dönüştürebiliriz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 animate-on-scroll">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-image text-primary me-2"></i>Otomatik Görsel Ekleme</h5>
+                        <p class="card-text">AI, içeriğe uygun görselleri otomatik olarak sunum slaytlarına ekler.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light py-4 mt-5" id="iletisim">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3 text-gradient">AI Sunum Oluşturucu</h5>
+                    <p>Ders içeriklerinizi kolayca profesyonel sunumlara ve konu anlatımlarına dönüştürün.</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="mb-3">İletişim</h5>
+                    <p><i class="bi bi-envelope-fill me-2"></i>Email: info@aisunum.com</p>
+                    <p><i class="bi bi-telephone-fill me-2"></i>Telefon: +90 123 456 7890</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2023 AI Sunum Oluşturucu. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadForm = document.getElementById('uploadForm');
+            const progressContainer = document.getElementById('progressContainer');
+            const resultContainer = document.getElementById('resultContainer');
+            const pdfNameElement = document.getElementById('pdfName');
+            const downloadBtn = document.getElementById('downloadPresentation');
+            const viewLectureBtn = document.getElementById('viewLecture');
+
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const fileInput = document.getElementById('pdfFile');
+                if (fileInput.files.length > 0) {
+                    const fileName = fileInput.files[0].name;
+                    pdfNameElement.textContent = fileName;
+                    progressContainer.style.display = 'block';
+                    simulateProgress();
+                }
+            });
+
+            uploadForm.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            });
+
+            uploadForm.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+            });
+
+            uploadForm.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                const fileInput = document.getElementById('pdfFile');
+                fileInput.files = e.dataTransfer.files;
+            });
+
+            function simulateProgress() {
+                let progress = 0;
+                const progressBar = document.querySelector('.progress-bar');
+                const interval = setInterval(() => {
+                    progress += 10;
+                    gsap.to(progressBar, {width: `${progress}%`, duration: 0.5, ease: "power2.out"});
+                    progressBar.setAttribute('aria-valuenow', progress);
+                    progressBar.textContent = `${progress}%`;
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        document.querySelector('.text-success').style.display = 'block';
+                        gsap.from('.text-success', {opacity: 0, y: 20, duration: 0.5});
+                        setTimeout(() => {
+                            resultContainer.style.display = 'block';
+                            gsap.from(resultContainer, {opacity: 0, y: 20, duration: 0.5});
+                        }, 1000);
+                    }
+                }, 500);
+            }
+
+            downloadBtn.addEventListener('click', function() {
+                gsap.to(this, {scale: 1.1, duration: 0.2, yoyo: true, repeat: 1});
+                alert('Sunum indiriliyor...');
+                // Burada gerçek indirme işlemi yapılabilir
+            });
+
+            viewLectureBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                gsap.to(this, {scale: 1.1, duration: 0.2, yoyo: true, repeat: 1});
+                // Burada gerçek yönlendirme işlemi yapılabilir
+            });
+
+            // Animate elements on scroll
+            function animateOnScroll() {
+                var elements = document.querySelectorAll('.animate-on-scroll');
+                elements.forEach(function(element) {
+                    if (isElementInViewport(element)) {
+                        element.classList.add('show');
+                    }
+                });
+            }
+
+            function isElementInViewport(el) {
+                var rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('load', animateOnScroll);
+
+            // Hover animations
+            gsap.utils.toArray('.card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card, {y: -5, boxShadow: '0 8px 15px rgba(0,0,0,.15)', duration: 0.3});
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {y: 0, boxShadow: '0 4px 6px rgba(0,0,0,.1)', duration: 0.3});
+                });
+            });
+        });
+    </script>
+</body>
+</html>
