@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınav Başlat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="title">Sınavı Başlat</h1>
+        <p>Belirlenen PDF dosyasından sınav soruları oluşturulacaktır.</p>
+
+        <!-- PDF Yükleme Butonu (Dosya seçme butonu kaldırıldı) -->
+        <button class="submit-button" onclick="uploadPDF()">PDF Yükle ve Soruları Al</button>
+
+        <!-- Sorular Bölümü -->
+        <div class="questions" id="questions-section" style="display: none;">
+            <h2>Oluşturulan Sorular</h2>
+            <form id="answer-form"></form>
+            <button class="submit-button" onclick="submitAnswers()">Cevapları Gönder</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

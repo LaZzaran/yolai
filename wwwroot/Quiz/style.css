@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.title {
+    color: #4A0072;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    padding: 12px;
+    background-color: #6a0dad;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #4A0072;
+    transform: scale(1.05);
+}
+
+.questions {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.question {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.option input[type="radio"] {
+    margin-right: 8px;
+}
+
+.option label {
+    font-size: 16px;
+    color: #555;
+}
