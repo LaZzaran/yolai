@@ -1,8 +1,10 @@
 # 💻 Career Test API
 
-IMAGE!!!
+![meslek](https://github.com/Talha-Bicak/YolAI/blob/main/img/JobTestOuestions.jpeg)
 
 This project is a career counseling API developed using FastAPI and Google's Gemini AI model. It analyzes users' interests, abilities, and preferences by asking a series of questions and provides personalized career suggestions.
+
+![meslek](https://github.com/Talha-Bicak/YolAI/blob/main/img/JobTestResult.jpeg)
 
 ## 🌟 Features
 
