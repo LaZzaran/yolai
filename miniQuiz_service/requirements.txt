@@ -1,0 +1,6 @@
+Python
+FastAPI
+PyPDF
+Google Generative AI
+Uvicorn
+Pydantic
