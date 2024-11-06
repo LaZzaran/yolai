@@ -14,7 +14,7 @@
 <a href="https://kestra.io/slack"><img src="https://img.shields.io/badge/Slack-Join%20Community-blueviolet?logo=slack" alt="Slack"></a>
 </div>
 
-![Video of the project here!](https://drive.google.com/file/d/1cFXl6RHkB7fHDCuoO_rhZdbOx6WT6ip0/view?usp=sharing)
+[Video of the project here](https://drive.google.com/file/d/1cFXl6RHkB7fHDCuoO_rhZdbOx6WT6ip0/view?usp=sharing)
 
 <h1 align="center" style="border-bottom: none">
    🚀 About Project
