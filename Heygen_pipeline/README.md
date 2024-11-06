@@ -1,6 +1,8 @@
 #### Yetkiliye Not: Bu bölüm bitirildikten sonra, ücretli kredilendirme bulunduğu tespit edilmiş, adil bir yarışma olması için kullanılmamıştır.
 <p>
-Bu repo alıntıdır.
+
+![Heygen](https://i.ytimg.com/vi/4mEWzwczFCQ/maxresdefault.jpg)
+Bu repo [adresinden](https://github.com/HeyGen-Official/InteractiveAvatarNextJSDemo) kaynak olarak alınıp isterlere uygun hale getirilmiştir.
 </p>
 
 # Heygen Interactive Avatar Integration for Autonomous PDF Presentation
@@ -22,8 +24,8 @@ For competition purposes, SadTalker was used as a substitute for Heygen due to H
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-link>
-cd <your-repo-directory>
+git clone https://github.com/Talha-Bicak/YolAI
+cd Heygen_pipeline
 ```
 
 ### 2. Install Dependencies
@@ -97,3 +99,4 @@ For more on Heygen’s Interactive Avatar API and enterprise usage, visit [Inter
 ---
 
 Feel free to explore and extend this integration for customized interactive experiences!
+
