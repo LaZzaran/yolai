@@ -1,5 +1,3 @@
-#### Önemli Not: Bu bölüm, yüksek donanım gereksinimleri sebebiyle yarışma sürecinde geçici olarak askıya alınmıştır.
-
 # Sunum Oluşturma API'si
 
 Bu proje, verilen bir PDF dosyasındaki metni analiz ederek profesyonel bir sunum oluşturmak için tasarlanmış bir FastAPI uygulamasıdır. Proje, metin içeriğine göre görsel arama terimleri üreten ve bu terimleri kullanarak AI tabanlı görüntü oluşturma işlevi ile desteklenmiş bir sunum dosyası (.pptx) üretir. Proje, Hugging Face ve Google API gibi çeşitli üçüncü parti hizmetleri kullanır.
@@ -17,8 +15,8 @@ Projeyi çalıştırmak için aşağıdaki adımları izleyin:
 
 1. **Projeyi klonlayın**:
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/Talha-Bicak/YolAI
+   cd stabilityai
 
 2. **Gereksinimleri yükleyin**:
     ```bash
