@@ -1,4 +1,3 @@
-#### Yetkiliye Not: Bu bölüm bitirildikten sonra, ücretli kredilendirme bulunduğu tespit edilmiş, adil bir yarışma olması için kullanılmamıştır.
 <p>
 
 ![Heygen](https://i.ytimg.com/vi/4mEWzwczFCQ/maxresdefault.jpg)
