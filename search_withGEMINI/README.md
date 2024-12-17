@@ -6,7 +6,8 @@ Bu proje, öğrencilere sorularını yanıtlamada yardımcı olan bir eğitim as
 
 1. Bu projeyi klonlayın:
     ```bash
-    git clone https://github.com/kullanici_adiniz/egitim-asistani-api.git
+    git clone https://github.com/Talha-Bicak/YolAI
+    cd search_withGEMINI
     ```
 
 2. Gerekli bağımlılıkları yükleyin:
